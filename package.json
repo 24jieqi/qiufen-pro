@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "prepare": "husky install",
-    "lint": "eslint packages/**/*.{ts,tsx}",
+    "lint": "eslint packages --ext .js,.ts,.tsx",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\""
   },
   "devDependencies": {
