@@ -62,6 +62,31 @@ module.exports = {
         },
       },
     ],
+    '@typescript-eslint/no-empty-interface': 0,
+    'import/default': 0,
+    // 数据转换 !!var +var
+    'no-implicit-coercion': 0,
     '@typescript-eslint/consistent-type-imports': 1,
+    'no-undef': 0,
+    'no-console': 1,
+    /**
+     * 禁止变量名与上层作用域内的已定义的变量重复
+     */
+    '@typescript-eslint/no-shadow': 2,
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+    'import/parsers': {
+      // 使用 TypeScript parser
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+      },
+    },
+    'import/extensions': ['.js', '.jsx', 'ts', 'tsx'],
   },
 }

@@ -35,5 +35,6 @@
     "noImplicitReturns": true,
     // 有错误时不进行编译，默认：false
     "noEmitOnError": true
-  }
+  },
+  "exclude": ["node_modules", ".eslintrc.js"]
 }
