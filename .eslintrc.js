@@ -75,19 +75,4 @@ module.exports = {
      */
     '@typescript-eslint/no-shadow': 2,
   },
-  settings: {
-    react: {
-      version: 'detect',
-    },
-    'import/parsers': {
-      // 使用 TypeScript parser
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
-    },
-    'import/resolver': {
-      typescript: {
-        alwaysTryTypes: true,
-      },
-    },
-    'import/extensions': ['.js', '.jsx', 'ts', 'tsx'],
-  },
 }
