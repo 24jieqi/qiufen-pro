@@ -1,7 +1,8 @@
-export function add() {
-  return 1 + 2
+const calc = (a: number, b: number): void => {
+  console.log(a - b)
 }
 
-const a = 111
-
-console.log('111')
+;-(
+  // calc(1024, 28)
+  +calc(1024, 28)
+)
