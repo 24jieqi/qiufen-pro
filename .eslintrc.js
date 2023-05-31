@@ -62,6 +62,7 @@ module.exports = {
         },
       },
     ],
+    '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/no-empty-interface': 0,
     'import/default': 0,
     // 数据转换 !!var +var
