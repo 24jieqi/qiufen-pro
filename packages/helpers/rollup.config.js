@@ -1,3 +1,4 @@
+import commonjs from '@rollup/plugin-commonjs'
 import json from '@rollup/plugin-json'
 import resolve from '@rollup/plugin-node-resolve'
 import { cleandir } from 'rollup-plugin-cleandir'
@@ -7,11 +8,16 @@ import pkg from './package.json'
 
 export default {
   input: './src/index.ts',
-  output: {
-    name: 'helpers',
-    file: pkg.main,
-    format: 'umd',
-  },
+  output: [
+    {
+      file: pkg.main,
+      format: 'cjs',
+    },
+    {
+      file: pkg.module,
+      format: 'es',
+    },
+  ],
   plugins: [
     /** 配置插件 - 每次打包清除目标文件 */
     cleandir('./dist'),
@@ -25,7 +31,7 @@ export default {
       modulesOnly: true,
       preferredBuiltins: false,
     }),
-    // commonjs({ extensions: [".js", ".ts", ".json"] })
+    commonjs({ extensions: ['.js', '.ts', '.json'] }),
   ],
   external: [
     ...Object.keys(pkg.dependencies || {}),

@@ -1,9 +1,19 @@
 {
   "name": "@fruits-chain/qiufen-pro-helpers",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {},
+  "description": "Collection of helper functions for qiufen-pro",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "type": "module",
+  "types": "dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "set NODE_ENV=production && rollup -c --bundleConfigAsCjs",
+    "build:mac": "NODE_ENV=production rollup -c --bundleConfigAsCjs"
+  },
   "keywords": [],
   "author": "",
   "license": "MIT"

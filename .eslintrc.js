@@ -74,5 +74,6 @@ module.exports = {
      * 禁止变量名与上层作用域内的已定义的变量重复
      */
     '@typescript-eslint/no-shadow': 2,
+    '@typescript-eslint/ban-ts-comment': 0,
   },
 }
