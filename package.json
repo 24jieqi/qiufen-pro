@@ -4,7 +4,7 @@
     "packages/*"
   ],
   "scripts": {
-    "clean": "rimraf dist",
+    "clean:dist": "rimraf dist",
     "clean:modules": "rimraf node_modules",
     "prepare": "husky install",
     "lint": "eslint --format=pretty packages --ext .js,.ts,.tsx",
