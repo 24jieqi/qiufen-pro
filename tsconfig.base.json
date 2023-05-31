@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    // 指定ts编译成ES的版本
+    "target": "ESNext",
+    // 指定编译后代码使用的模块化规范
+    "module": "ESNext",
+    // 指定模块解析策略，node 或 classic
+    "moduleResolution": "Node",
+    // 指定要包含在编译中的库文件
+    "lib": ["ESNext", "DOM"],
+    // 是否跳过声明文件的类型检查，这可以在编译期间以牺牲类型系统准确性为代价来节省时间，默认：false
+    "skipLibCheck": true,
+    // 通过为导入内容创建命名空间，实现 CommonJS 和 ES 模块之间的互操作性，默认为 true
+    "esModuleInterop": true,
+    // 用于允许从没有默认导出的模块中默认导入
+    "allowSyntheticDefaultImports": true,
+    // 是否解析 JSON 模块，默认：false
+    "resolveJsonModule": true,
+    /* 
+    strict：是否启动所有严格检查的总开关，默认：false，启动后将开启所有的严格检查选项。
+    alwaysStrict：是否以严格模式解析，并为每个源文件发出"use strict"，默认：false。
+    noImplicitAny：是否禁止隐式的any类型，默认：false。
+    noImplicitThis：是否禁止不明确类型的this，默认：false。
+    strictNullChecks：是否启用严格的空检查，默认：false。
+    strictBindCallApply：是否在函数上启用严格的’bind’， 'call’和’apply’方法，默认：false。
+    strictFunctionTypes：是否启用对函数类型的严格检查，默认：false。
+    strictPropertyInitialization：是否启用严格检查类的属性初始化，默认：false。
+    */
+    "strict": true,
+    // 是否检查子类继承自基类时，其重载的函数命名与基类的函数不同步问题，默认：false
+    "noImplicitOverride": true,
+    // 检查函数是否不含有隐式返回值，默认：false
+    "noImplicitReturns": true,
+    // 有错误时不进行编译，默认：false
+    "noEmitOnError": true
+  }
+}
