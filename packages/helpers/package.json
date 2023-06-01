@@ -22,5 +22,8 @@
   },
   "peerDependencies": {
     "graphql": "^16.6.0"
+  },
+  "dependencies": {
+    "node-fetch": "2"
   }
 }

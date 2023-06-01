@@ -1,23 +1,48 @@
 import { buildClientSchema, getIntrospectionQuery, printSchema } from 'graphql'
 
-export async function fetchTypeDefs(url: string) {
-  let timer
-  const response = await Promise.race([
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: getIntrospectionQuery().toString(),
-      }),
-    }),
-    new Promise(function (_, reject) {
-      timer = setTimeout(() => reject(new Error('request timeout')), 15000)
-    }),
-  ])
+function isBrowser(): boolean {
+  return typeof window !== 'undefined'
+}
 
-  clearTimeout(timer)
+export async function fetchTypeDefs(url: string) {
+  let response
+  if (isBrowser()) {
+    let timer
+    response = await Promise.race([
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: getIntrospectionQuery().toString(),
+        }),
+      }),
+      new Promise(function (_, reject) {
+        timer = setTimeout(() => reject(new Error('request timeout')), 15000)
+      }),
+    ])
+    clearTimeout(timer)
+  } else {
+    let timer
+    // @ts-ignore
+    const nodeFetch = require('node-fetch')
+    response = await Promise.race([
+      nodeFetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: getIntrospectionQuery().toString(),
+        }),
+      }),
+      new Promise(function (_, reject) {
+        timer = setTimeout(() => reject(new Error('request timeout')), 15000)
+      }),
+    ])
+    clearTimeout(timer)
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data } = await (response as any).json()
