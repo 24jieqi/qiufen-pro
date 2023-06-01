@@ -6,6 +6,8 @@
 fetchTypeDefs(url: string): Promise<string>
 ```
 
+Given a url, return a Promise that resolves to a graphql sdl string when the retrieval is complete.
+
 ```ts
 // demo
 fetchTypeDefs('http://localhost:4001/graphql').then(str => {
@@ -29,13 +31,13 @@ str: /*
 
 ```
 
-Given a url, return a Promise that resolves to a graphql sdl string when the retrieval is complete.
-
 #### fetchSchema
 
 ```ts
 fetchSchema(url: string): Promise<GraphQLSchema>
 ```
+
+Given a url, return a Promise that resolves to a GraphQLSchema when the retrieval is complete.
 
 ```ts
 // demo
@@ -48,5 +50,3 @@ graphqlSchema: /*
 */
 
 ```
-
-Given a url, return a Promise that resolves to a GraphQLSchema when the retrieval is complete.
