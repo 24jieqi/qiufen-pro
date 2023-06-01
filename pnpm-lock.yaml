@@ -50,6 +50,9 @@ importers:
       rollup-plugin-cleandir:
         specifier: ^2.0.0
         version: 2.0.0(rollup@3.23.0)
+      rollup-plugin-dts:
+        specifier: ^5.3.0
+        version: 5.3.0(rollup@3.23.0)(typescript@5.0.4)
       rollup-plugin-terser:
         specifier: ^7.0.2
         version: 7.0.2(rollup@3.23.0)
@@ -1960,6 +1963,13 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
+  /magic-string@0.30.0:
+    resolution: {integrity: sha512-LA+31JYDJLs82r2ScLrlz1GjSgu66ZV518eyWT+S8VhyQn/JL0u9MeBOvQMGYiPk1DBiSN9DDMOcXvigJZaViQ==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.4.15
+    dev: true
+
   /make-dir@3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
@@ -2382,6 +2392,20 @@ packages:
     dependencies:
       '@mstssk/cleandir': 1.2.1
       rollup: 3.23.0
+    dev: true
+
+  /rollup-plugin-dts@5.3.0(rollup@3.23.0)(typescript@5.0.4):
+    resolution: {integrity: sha512-8FXp0ZkyZj1iU5klkIJYLjIq/YZSwBoERu33QBDxm/1yw5UU4txrEtcmMkrq+ZiKu3Q4qvPCNqc3ovX6rjqzbQ==}
+    engines: {node: '>=v14'}
+    peerDependencies:
+      rollup: ^3.0.0
+      typescript: ^4.1 || ^5.0
+    dependencies:
+      magic-string: 0.30.0
+      rollup: 3.23.0
+      typescript: 5.0.4
+    optionalDependencies:
+      '@babel/code-frame': 7.21.4
     dev: true
 
   /rollup-plugin-terser@7.0.2(rollup@3.23.0):
