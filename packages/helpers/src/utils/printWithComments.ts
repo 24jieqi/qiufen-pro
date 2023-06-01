@@ -44,13 +44,13 @@ function hasMultilineItems(maybeArray: Maybe<ReadonlyArray<string>>): boolean {
 }
 
 function addHashesToLines(str: string): string {
-  // 将每行文本分割成一个字符串数组
+  // Split each line of text into an array of strings
   const lines = str.split(/\r?\n/)
 
-  // 在每行的开头添加 "#"
+  // Add "#" at the beginning of each line
   const hashedLines = lines.map(line => `# ${line}`)
 
-  // 将处理后的字符串数组合并回一个字符串，每行之间用换行符连接
+  // Merge the processed array of strings back into a single string, with newlines between each line
   return hashedLines.join('\n')
 }
 
@@ -71,7 +71,10 @@ type VisitFn = (
   ancestors: NamedTypeNode[],
 ) => any
 
-function addDescription(cb: VisitFn, isAllAddComment = false): VisitFn {
+function addDescription(
+  cb: VisitFn,
+  isAllFieldNodeAddComment = false,
+): VisitFn {
   return (
     node: {
       description?: StringValueNode & { isNeedComment?: boolean }
@@ -104,8 +107,8 @@ function addDescription(cb: VisitFn, isAllAddComment = false): VisitFn {
     return join(
       [
         ...items.map(printComment),
-        // TODO: 判断头部还是每个字段展示备注
-        (isAllAddComment ||
+        // Determine whether the header or each field displays notes
+        (isAllFieldNodeAddComment ||
           node.kind === Kind.OPERATION_DEFINITION ||
           node.description?.isNeedComment) &&
         node.description?.value
@@ -401,13 +404,16 @@ const printDocASTReducer: ASTVisitor = {
   },
 }
 
-const printDocASTReducerWithComments = (isAllAddComment = false) => {
+const printDocASTReducerWithComments = (isAllFieldNodeAddComment = false) => {
   return Object.keys(printDocASTReducer).reduce(
     (prev, key) => ({
       ...prev,
       [key]: {
-        // @ts-ignore
-        leave: addDescription(printDocASTReducer[key].leave, isAllAddComment),
+        leave: addDescription(
+          // @ts-ignore
+          printDocASTReducer[key].leave,
+          isAllFieldNodeAddComment,
+        ),
       },
     }),
     {} as typeof printDocASTReducer,
@@ -416,10 +422,10 @@ const printDocASTReducerWithComments = (isAllAddComment = false) => {
 
 export function printWithComments(
   ast: ASTNode,
-  isAllAddComment = false,
+  isAllFieldNodeAddComment = false,
 ): string {
   return visit(
     ast,
-    printDocASTReducerWithComments(isAllAddComment),
+    printDocASTReducerWithComments(isAllFieldNodeAddComment),
   ) as unknown as string
 }
