@@ -19,6 +19,7 @@ export async function fetchTypeDefs(url: string) {
 
   clearTimeout(timer)
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data } = await (response as any).json()
   // 这里判断一下走的什么模式拿到的远程的schema 定义
   const backendTypeDefs = printSchema(buildClientSchema(data))
