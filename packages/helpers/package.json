@@ -16,5 +16,11 @@
   },
   "keywords": [],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "graphql": "^16.6.0"
+  },
+  "peerDependencies": {
+    "graphql": "^16.6.0"
+  }
 }
