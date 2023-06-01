@@ -102,8 +102,7 @@ Converts an AST into a string, using one set of reasonable formatting rules.
 
 ```ts
 // demo1
-// documentNode in the last example
-const ruleStrWithHeaderComment = printWithComments(documentNode)
+const ruleStrWithHeaderComment = printWithComments(documentNode) // The documentNode in the last example
 console.log(ruleStrWithHeaderComment)
 
 ruleStrWithHeaderComment: /*
@@ -122,8 +121,7 @@ query abnormalOrder($abnormalOrderInput: AbnormalOrderInput) {
 */
 
 // demo2
-// documentNode in the last example
-const ruleStrWithAllFieldsComment = printWithComments(documentNode,true)
+const ruleStrWithAllFieldsComment = printWithComments(documentNode,true) // The documentNode in the last example
 console.log(ruleStrWithAllFieldsComment)
 
 ruleStrWithAllFieldsComment: /*
