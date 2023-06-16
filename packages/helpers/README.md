@@ -169,11 +169,30 @@ function buildOperationNodeForField({
 }): OperationDefinitionNodeGroupType
 ```
 
-Given a schema, return a OperationDefinitionNodeGroupType.
+Given a schema, return a type of "OperationDefinitionNodeGroupType" object.
 
 ```ts
 // demo1
-buildOperationNodeForField(schema)
+buildOperationNodeForField({
+  schema: schema,
+  kind: OperationTypeNode.QUERY,
+  field: 'adjustBillDetailQuery',
+})
 ```
 
 ![img-buildOperationNodeForField](https://github.com/never-w/picb/blob/main/qiufen-pro-images/buildOperationNodeForField.png)
+
+#### getOperationNodesForFieldAstBySchema
+
+```ts
+getOperationNodesForFieldAstBySchema(schema: GraphQLSchema): OperationNodesForFieldAstBySchemaReturnType[];
+```
+
+Given a schema, return a type of "OperationNodesForFieldAstBySchemaReturnType []" array.
+
+```ts
+// demo1
+getOperationNodesForFieldAstBySchema(schema)
+```
+
+![img-buildOperationNodeForField](https://github.com/never-w/picb/blob/main/qiufen-pro-images/getOperationNodesForFieldAstBySchema.png)
