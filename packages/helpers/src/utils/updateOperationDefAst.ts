@@ -65,10 +65,18 @@ function hasConflictingVariableDefinitions(
 }
 
 export function updateOperationDefAst(
-  leftDefNode: DefinitionNode | FieldNode | InlineFragmentNode,
-  rightDefNode: DefinitionNode | FieldNode | InlineFragmentNode,
+  leftDefNode:
+    | DefinitionNode
+    | FieldNode
+    | InlineFragmentNode
+    | OperationDefinitionNode,
+  rightDefNode:
+    | DefinitionNode
+    | FieldNode
+    | InlineFragmentNode
+    | OperationDefinitionNode,
   remoteConflictingVariablesNames: ConflictingVariablesNames[] = [],
-): DefinitionNode | null {
+): DefinitionNode | OperationDefinitionNode | null {
   const localNode = leftDefNode as unknown as
     | CanWrite<FieldNode>
     | ExecutableDefinitionNode

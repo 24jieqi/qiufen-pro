@@ -1,3 +1,9 @@
+# @fruits-chain/qiufen-pro-helpers
+
+- Collection of helper functions for qiufen-pro
+- Suggestion: Use with [graphql.js](https://graphql-js.org/).
+- Fast and efficient processing of graphql ast
+
 ## Functions
 
 ## fetchTypeDefs
