@@ -1,6 +1,6 @@
 ## Functions
 
-#### fetchTypeDefs
+## fetchTypeDefs
 
 ```ts
 fetchTypeDefs(url: string): Promise<string>
@@ -31,7 +31,7 @@ str: /*
 
 ```
 
-#### fetchSchema
+## fetchSchema
 
 ```ts
 fetchSchema(url: string): Promise<GraphQLSchema>
@@ -51,7 +51,7 @@ graphqlSchema: /*
 
 ```
 
-#### parseOperationWithDescriptions
+## parseOperationWithDescriptions
 
 ```ts
 function parseOperationWithDescriptions(
@@ -89,7 +89,7 @@ documentNode: /*
 */
 ```
 
-#### printWithComments
+## printWithComments
 
 ```ts
 function printWithComments(
@@ -142,7 +142,7 @@ query abnormalOrder($abnormalOrderInput: AbnormalOrderInput) {
 */
 ```
 
-#### buildOperationNodeForField
+## buildOperationNodeForField
 
 ```ts
 function buildOperationNodeForField({
@@ -182,17 +182,145 @@ buildOperationNodeForField({
 
 ![img-buildOperationNodeForField](https://github.com/never-w/picb/blob/main/qiufen-pro-images/buildOperationNodeForField.png)
 
-#### getOperationNodesForFieldAstBySchema
+## getOperationNodesForFieldAstBySchema
 
 ```ts
 getOperationNodesForFieldAstBySchema(schema: GraphQLSchema): OperationNodesForFieldAstBySchemaReturnType[];
 ```
 
-Given a schema, return a type of "OperationNodesForFieldAstBySchemaReturnType []" array.
+Given a schema, return a type of "OperationNodesForFieldAstBySchemaReturnType[]" array.
 
 ```ts
 // demo1
 getOperationNodesForFieldAstBySchema(schema)
 ```
 
-![img-buildOperationNodeForField](https://github.com/never-w/picb/blob/main/qiufen-pro-images/getOperationNodesForFieldAstBySchema.png)
+![img-getOperationNodesForFieldAstBySchema](https://github.com/never-w/picb/blob/main/qiufen-pro-images/getOperationNodesForFieldAstBySchema.png)
+
+## onSchemaDiffToOperationDefs
+
+```ts
+function onSchemaDiffToOperationDefs(
+  leftSchema: GraphQLSchema,
+  rightSchema: GraphQLSchema,
+): OnSchemaDiffToOperationDefsItem[]
+```
+
+Given two schemas, return a type of "OnSchemaDiffToOperationDefsItem[]" array.
+
+```ts
+// demo1
+import { buildSchema } from 'graphql'
+
+const typeDefs0 = `#graphql
+  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
+  enum AllowedColor {
+    RED
+    GREEN
+    BLUE
+  }
+
+  # This "Book" type defines the queryable fields for every book in our data source.
+  type Book {
+    """
+     备注title
+    """
+    title: String
+    wyq: Int
+    author: String
+    favoriteColor: [AllowedColor]
+  }
+
+  input C {
+   age:Int 
+   hight:String
+  }
+
+  input B {
+     name: String
+     obj: C
+  }
+
+input A {
+  date: Int!
+  remark: B
+}
+
+input TaskBoardQueryInput {
+  date: Int!
+  remark: String
+  favoriteColor: [AllowedColor]
+  var: A!
+}
+
+  type Query {
+  """
+  分类: s书籍信息
+  """
+    books(contains: TaskBoardQueryInput): [Book]
+  """
+  信息: text
+  """
+    text:Book
+    removeName:Int
+  }
+`
+const typeDefs1 = `#graphql
+  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
+  enum AllowedColor {
+    RED
+    GREEN
+    BLUE
+  }
+
+  # This "Book" type defines the queryable fields for every book in our data source.
+  type Book {
+    """
+     备注title
+    """
+    title: String
+    wyq: Int
+    author: String
+    favoriteColor: [AllowedColor]
+  }
+
+  input C {
+   age:Int 
+   hight:String
+  }
+
+  input B {
+     name: String
+     obj: C
+  }
+
+input A {
+  date: Int!
+  remark: B
+}
+
+input TaskBoardQueryInput {
+  date: Int!
+  remark: String
+  favoriteColor: [AllowedColor]
+  var: A!
+}
+
+  type Query {
+  """
+  分类: s书籍信息
+  """
+    books(contains: TaskBoardQueryInput): [Book]
+  """
+  信息: text
+  """
+    text:Int
+    addName:Int
+  }
+`
+const leftSchema = buildSchema(typeDefs0)
+const rightSchema = buildSchema(typeDefs1)
+onSchemaDiffToOperationDefs(leftSchema, rightSchema)
+```
+
+![img-onSchemaDiffToOperationDefs](https://github.com/never-w/picb/blob/main/qiufen-pro-images/onSchemaDiffToOperationDefs.png)
