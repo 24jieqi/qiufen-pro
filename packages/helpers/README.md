@@ -142,4 +142,38 @@ query abnormalOrder($abnormalOrderInput: AbnormalOrderInput) {
 */
 ```
 
-![sa](https://github.com/never-w/picb/blob/main/back-top.png)
+#### buildOperationNodeForField
+
+```ts
+function buildOperationNodeForField({
+  schema,
+  kind,
+  field,
+  models,
+  ignore,
+  depthLimit,
+  circularReferenceDepth,
+  argNames,
+  selectedFields,
+}: {
+  schema: GraphQLSchema
+  kind: OperationTypeNode
+  /** eg. search */
+  field: string
+  models?: string[]
+  ignore?: Ignore
+  depthLimit?: number
+  circularReferenceDepth?: number
+  argNames?: string[]
+  selectedFields?: SelectedFields
+}): OperationDefinitionNodeGroupType
+```
+
+Given a schema, return a OperationDefinitionNodeGroupType.
+
+```ts
+// demo1
+buildOperationNodeForField(schema)
+```
+
+![img-buildOperationNodeForField](https://github.com/never-w/picb/blob/main/qiufen-pro-images/buildOperationNodeForField.png)

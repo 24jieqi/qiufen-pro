@@ -18,12 +18,14 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@types/lodash": "^4.14.195",
     "graphql": "^16.6.0"
   },
   "peerDependencies": {
     "graphql": "^16.6.0"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "node-fetch": "2"
   }
 }
