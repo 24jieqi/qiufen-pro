@@ -324,3 +324,146 @@ onSchemaDiffToOperationDefs(leftSchema, rightSchema)
 ```
 
 ![img-onSchemaDiffToOperationDefs](https://github.com/never-w/picb/blob/main/qiufen-pro-images/onSchemaDiffToOperationDefs.png)
+
+## updateOperationDefAst
+
+```ts
+function updateOperationDefAst(
+  leftDefNode: DefinitionNode | FieldNode | InlineFragmentNode,
+  rightDefNode: DefinitionNode | FieldNode | InlineFragmentNode,
+  remoteConflictingVariablesNames?: ConflictingVariablesNames[],
+): DefinitionNode | null
+```
+
+Pass in leftDefNode and rightDefNode, and update leftDefNode to rightDefNode.
+
+```ts
+// demo1
+import {
+  parseOperationWithDescriptions,
+  printWithComments,
+} from '@fruits-chain/qiufen-pro-helpers'
+
+const gql0 = `
+# 异常订单: 详情
+query abnormalOrder($abnormalOrderInput: AbnormalOrderInput) {
+  abnormalOrder(abnormalOrderInput: $abnormalOrderInput) {
+    abnormalOrderId
+    abnormalOrderStatus
+    customer {
+      customerId
+      customerName
+      customerType
+    }
+  }
+}
+`
+
+const gql1 = `
+# 异常订单: 详情
+query abnormalOrder($abnormalOrderInput: AbnormalOrderInput) {
+  abnormalOrder(abnormalOrderInput: $abnormalOrderInput) {
+    abnormalOrderId
+    abnormalOrderStatus
+  }
+}
+`
+
+const gqlAts0 = parseOperationWithDescriptions(gql0)
+const gqlAts1 = parseOperationWithDescriptions(gql1)
+
+const operationDefAst = updateOperationDefAst(
+  gqlAts0.definitions[0],
+  gqlAts1.definitions[0],
+)
+
+const newGql = printWithComments(operationDefAst)
+console.log(newGql)
+
+newGql:/*
+# 异常订单: 详情
+query abnormalOrder($abnormalOrderInput: AbnormalOrderInput) {
+  abnormalOrder(abnormalOrderInput: $abnormalOrderInput) {
+    abnormalOrderId
+    abnormalOrderStatus
+    customer {
+      customerId
+      customerName
+      customerType
+    }
+  }
+}
+/*
+```
+
+```ts
+// demo2
+import {
+  parseOperationWithDescriptions,
+  printWithComments,
+} from '@fruits-chain/qiufen-pro-helpers'
+
+const gql0 = `
+# 异常订单: 详情
+query abnormalOrder($abnormalOrderInput: AbnormalOrderInput) {
+  abnormalOrder(abnormalOrderInput: $abnormalOrderInput) {
+    abnormalOrderId
+    abnormalOrderStatus
+    customer {
+      customerId
+      customerName
+      customerType
+    }
+  }
+  name11 {
+    id
+    key
+    customer {
+      customerId
+      customerName
+    }
+  }
+}
+`
+
+const gql1 = `
+# 异常订单: 详情
+query abnormalOrder($abnormalOrderInput: AbnormalOrderInput) {
+  abnormalOrder(abnormalOrderInput: $abnormalOrderInput) {
+    abnormalOrderId
+    abnormalOrderStatus
+    title
+  }
+}
+`
+
+const gqlAts0 = parseOperationWithDescriptions(gql0)
+const gqlAts1 = parseOperationWithDescriptions(gql1)
+
+const operationDefAst = updateOperationDefAst(
+  gqlAts0.definitions[0],
+  gqlAts1.definitions[0],
+)
+
+const newGql = printWithComments(operationDefAst)
+console.log(newGql)
+
+newGql:/*
+# 异常订单: 详情
+query abnormalOrder($abnormalOrderInput: AbnormalOrderInput) {
+  abnormalOrder(abnormalOrderInput: $abnormalOrderInput) {
+    abnormalOrderId
+    abnormalOrderStatus
+    title
+  }
+  name11 {
+    id
+    key
+    customer {
+      customerId
+      customerName
+    }
+  }
+}
+/*
+```

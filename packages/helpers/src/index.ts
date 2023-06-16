@@ -5,3 +5,4 @@ export { parseOperationWithDescriptions } from './utils/parseOperationWithDescri
 export { buildOperationNodeForField } from './utils/buildOperationNodeForField'
 export { getOperationNodesForFieldAstBySchema } from './utils/getOperationNodesForFieldAstBySchema'
 export { onSchemaDiffToOperationDefs } from './utils/onSchemaDiffToOperationDefs'
+export { updateOperationDefAst } from './utils/updateOperationDefAst'
