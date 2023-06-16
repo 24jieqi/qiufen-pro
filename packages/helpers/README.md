@@ -393,7 +393,7 @@ query abnormalOrder($abnormalOrderInput: AbnormalOrderInput) {
     }
   }
 }
-/*
+*/
 ```
 
 ```ts
@@ -465,5 +465,5 @@ query abnormalOrder($abnormalOrderInput: AbnormalOrderInput) {
     }
   }
 }
-/*
+*/
 ```
