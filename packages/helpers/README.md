@@ -3,6 +3,7 @@
 - Collection of helper functions for qiufen-pro
 - Suggestion: Use with [graphql.js](https://graphql-js.org/).
 - Fast and efficient processing of graphql ast
+- You can also use some of the utility functions in "graphql.js"
 
 ## Functions
 
