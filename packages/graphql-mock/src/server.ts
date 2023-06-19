@@ -31,6 +31,5 @@ export async function startMockingServer() {
   })
 
   const { url } = await startStandaloneServer(server, { listen: { port } })
-  // eslint-disable-next-line no-console
-  console.log(`🚀 Server listening at: ${url}`)
+  console.log(`🚀 Mocking server listening at: ${url}`)
 }
