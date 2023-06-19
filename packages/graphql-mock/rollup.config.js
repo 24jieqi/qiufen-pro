@@ -37,7 +37,6 @@ export default [
       resolve({
         extensions: ['.js', '.ts', '.json'],
         modulesOnly: true,
-        preferredBuiltins: false,
       }),
       commonjs({ extensions: ['.js', '.ts', '.json'] }),
     ],

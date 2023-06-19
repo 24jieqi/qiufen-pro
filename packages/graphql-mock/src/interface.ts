@@ -1,4 +1,4 @@
-interface GraphqlKitConfig {
+export interface GraphqlKitConfig {
   /** your qiufen service port */
   port: number
   /** backend service config */
@@ -13,12 +13,12 @@ interface GraphqlKitConfig {
   playground?: PlaygroundConfig
 }
 
-interface ServiceConfig {
+export interface ServiceConfig {
   /** backend service url */
   url: string
 }
 
-interface MockConfig {
+export interface MockConfig {
   /** enable the mock ability while it's true */
   enable: boolean
   /** the default value of enable arg in mock directive, default is true */
@@ -33,9 +33,9 @@ interface MockConfig {
   resolvers?: any
 }
 
-type SchemaPolicy = 'local' | 'remote'
+export type SchemaPolicy = 'local' | 'remote'
 
-interface PlaygroundConfig {
+export interface PlaygroundConfig {
   /** request headers */
   headers?: Record<string, string>
 }

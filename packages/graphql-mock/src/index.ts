@@ -1,3 +1,2 @@
-export function startMockingServer(config: GraphqlKitConfig) {
-  const { endpoint, port, mock } = config
-}
+export { startMockingServer } from './server'
+export * from './interface'
