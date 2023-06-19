@@ -61,9 +61,9 @@ const { Random } = Mock
 /** @type Config */
 const config = {
   port: 4200,
-  // 本地schema文件路径
+  // Local schema file path
   localSchemaFile: './src/graphql/generated/schema.graphql',
-  // "remote" | "local" 两种模式，当远程网关失败时建议设置为 'local'，并指定本地schema文件路径.
+  // "remote" | "local". When the remote gateway fails, you are advised to set it to "local" and specify the path of the local schema file.
   schemaPolicy: 'remote',
   endpoint: {
     // remote schema address
@@ -86,7 +86,7 @@ const config = {
     },
     resolvers: {
       Query: {
-        // 自定义接口返回
+        /* Custom field interface return */
         // ListTaskBoard: () => {
         //   return [
         //     {
