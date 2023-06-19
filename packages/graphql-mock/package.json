@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@apollo/server": "^4.7.4",
-    "@fruits-chain/qiufen-pro-helpers": "file:../helpers",
+    "@fruits-chain/qiufen-pro-helpers": "workspace:^",
     "@graphql-tools/mock": "^9.0.0",
     "@graphql-tools/schema": "^10.0.0"
   }
