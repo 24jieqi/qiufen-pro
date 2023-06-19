@@ -115,3 +115,11 @@ const config = {
 
 module.exports = config
 ```
+
+- step4:
+
+```ts
+const { startMockingServer } = require('@fruits-chain/qiufen-pro-graphql-mock')
+
+startMockingServer()
+```
