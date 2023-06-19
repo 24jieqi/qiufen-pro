@@ -9,8 +9,6 @@ export interface GraphqlKitConfig {
   schemaPolicy?: SchemaPolicy
   /** mock config */
   mock?: MockConfig
-  /** playground config */
-  playground?: PlaygroundConfig
 }
 
 export interface ServiceConfig {
@@ -19,18 +17,14 @@ export interface ServiceConfig {
 }
 
 export interface MockConfig {
-  /** enable the mock ability while it's true */
-  enable: boolean
-  /** the default value of enable arg in mock directive, default is true */
-  mockDirectiveDefaultEnableValue: boolean
-  /** schema files used for dev env, valid when enable is true */
-  schemaFiles?: string[]
   /** value map rules, you should add all your scalar type mappers here or you'll get an error */
   scalarMap: any
-  /** context for mock script in mock directive */
-  context?: Record<string, unknown>
   /** graphql resolvers for operations, you can custom operation response here */
-  resolvers?: any
+  resolvers?: {
+    Query?: any
+    Mutation?: any
+    Subscription?: any
+  }
 }
 
 export type SchemaPolicy = 'local' | 'remote'
