@@ -1,3 +1,4 @@
+import fs from 'fs'
 import path from 'path'
 
 import { ApolloServer } from '@apollo/server'
@@ -12,24 +13,38 @@ export async function startMockingServer() {
   const root = path.join(process.cwd())
   const qiufenConfigFilePath = path.join(root, 'qiufen.config.js')
 
-  /** 去除require缓存 */
-  delete eval('require.cache')[qiufenConfigFilePath]
-  const qiufenConfigs: GraphqlKitConfig = eval('require')(qiufenConfigFilePath)
+  /** Delete require cache */
+  delete require.cache[qiufenConfigFilePath]
+  const qiufenConfigs: GraphqlKitConfig = require(qiufenConfigFilePath)
+  const {
+    endpoint,
+    port,
+    mock,
+    schemaPolicy = 'remote',
+    localSchemaFile = '',
+  } = qiufenConfigs
 
-  const { endpoint, port, mock } = qiufenConfigs
-
-  const backendSDL = await fetchTypeDefs(endpoint?.url)
+  let typeDefsSDL = ''
+  if (schemaPolicy === 'remote') {
+    typeDefsSDL = await fetchTypeDefs(endpoint?.url)
+  } else {
+    typeDefsSDL = fs
+      .readFileSync(path.join(process.cwd(), localSchemaFile))
+      ?.toString()
+  }
 
   const server = new ApolloServer({
     schema: addMocksToSchema({
       schema: makeExecutableSchema({
-        typeDefs: backendSDL,
+        typeDefs: typeDefsSDL,
         resolvers: mock?.resolvers,
       }),
       mocks: mock?.scalarMap,
+      preserveResolvers: true,
     }),
   })
 
   const { url } = await startStandaloneServer(server, { listen: { port } })
+  // eslint-disable-next-line no-console
   console.log(`🚀 Mocking server listening at: ${url}`)
 }
