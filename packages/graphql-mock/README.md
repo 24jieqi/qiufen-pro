@@ -126,7 +126,7 @@ const {
 executeQiufenMockingServer()
 ```
 
-- step5
+- step5:
   If you want to customize the configuration
 
 ```ts
