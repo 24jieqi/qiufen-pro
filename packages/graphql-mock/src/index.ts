@@ -1,2 +1,2 @@
-export { startMockingServer } from './server'
+export { executeQiufenMockingServer, startMockingServer } from './server'
 export * from './interface'

@@ -9,13 +9,17 @@ import { makeExecutableSchema } from '@graphql-tools/schema'
 
 import type { GraphqlKitConfig } from './interface'
 
-export async function startMockingServer() {
+export async function executeQiufenMockingServer() {
   const root = path.join(process.cwd())
   const qiufenConfigFilePath = path.join(root, 'qiufen.config.js')
 
   /** Delete require cache */
   delete require.cache[qiufenConfigFilePath]
   const qiufenConfigs: GraphqlKitConfig = require(qiufenConfigFilePath)
+  startMockingServer(qiufenConfigs)
+}
+
+export async function startMockingServer(qiufenConfigs: GraphqlKitConfig) {
   const {
     endpoint,
     port,
