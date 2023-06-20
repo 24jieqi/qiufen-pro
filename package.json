@@ -8,7 +8,7 @@
     "clean": "rimraf dist",
     "clean:modules": "rimraf node_modules",
     "prepare": "husky install",
-    "lint": "eslint --format=pretty packages --ext .js,.ts,.tsx",
+    "lint": "eslint --format=pretty packages --quiet --ext .js,.ts,.tsx",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\""
   },
   "devDependencies": {
