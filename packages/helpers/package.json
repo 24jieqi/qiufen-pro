@@ -14,8 +14,16 @@
     "build": "set NODE_ENV=production && rollup -c --bundleConfigAsCjs",
     "build:mac": "NODE_ENV=production rollup -c --bundleConfigAsCjs"
   },
-  "keywords": [],
+  "keywords": [
+    "graphql",
+    "utils",
+    "operations",
+    "graphql-ast"
+  ],
   "author": "",
+  "repository": {
+    "url": "https://github.com/never-w/qiufen-pro/tree/master/packages/helpers"
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/lodash": "^4.14.195",
