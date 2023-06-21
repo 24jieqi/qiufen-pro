@@ -2,11 +2,7 @@ import { OperationTypeNode, type GraphQLSchema } from 'graphql'
 
 import { buildOperationNodeForField } from './buildOperationNodeForField'
 
-import type { OperationDefinitionNodeGroupType } from './interface'
-
-export type OperationNodesForFieldAstBySchemaReturnType = {
-  operationDefNodeAst: OperationDefinitionNodeGroupType
-}
+import type { OperationNodesForFieldAstBySchemaReturnType } from './interface'
 
 export function getOperationNodesForFieldAstBySchema(
   schema: GraphQLSchema,

@@ -1,26 +1,15 @@
 import _ from 'lodash'
 
-import {
-  getOperationNodesForFieldAstBySchema,
-  type OperationNodesForFieldAstBySchemaReturnType,
-} from './getOperationNodesForFieldAstBySchema'
-import {
-  BreakingChangeType,
-  findBreakingChanges,
-  OperationStatusTypeEnum,
-} from './schemaDiff'
+import { getOperationNodesForFieldAstBySchema } from './getOperationNodesForFieldAstBySchema'
+import { OperationStatusTypeEnum } from './interface'
+import { BreakingChangeType, findBreakingChanges } from './schemaDiff'
 
+import type {
+  OnSchemaDiffToOperationDefsItem,
+  OperationNodesForFieldAstBySchemaReturnType,
+} from './interface'
 import type { ChangeListType } from './schemaDiff'
 import type { GraphQLSchema } from 'graphql'
-
-export type OnSchemaDiffToOperationDefsItem = {
-  type: OperationStatusTypeEnum
-  operationComment?: string
-  operationType?: string
-  operationName?: string
-  routePath: string
-  descriptionList: string[]
-}
 
 export function onSchemaDiffToOperationDefs(
   leftSchema: GraphQLSchema,

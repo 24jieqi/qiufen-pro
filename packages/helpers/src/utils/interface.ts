@@ -120,3 +120,23 @@ export type OperationDefinitionNodeGroupType = OperationDefinitionNode & {
   variableTypeList?: string[]
   args: OperationDefsAstArgsType[]
 }
+
+export type OperationNodesForFieldAstBySchemaReturnType = {
+  operationDefNodeAst: OperationDefinitionNodeGroupType
+}
+
+export enum OperationStatusTypeEnum {
+  'ALL' = 'ALL',
+  'ADDED' = 'ADDED',
+  'EDITED' = 'EDITED',
+  'DELETED' = 'DELETED',
+}
+
+export type OnSchemaDiffToOperationDefsItem = {
+  type: OperationStatusTypeEnum
+  operationComment?: string
+  operationType?: string
+  operationName?: string
+  routePath: string
+  descriptionList: string[]
+}

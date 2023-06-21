@@ -176,13 +176,6 @@ export enum DangerousChangeType {
   ARG_DEFAULT_VALUE_CHANGE = 'ARG_DEFAULT_VALUE_CHANGE',
 }
 
-export enum OperationStatusTypeEnum {
-  'ALL' = 'ALL',
-  'ADDED' = 'ADDED',
-  'EDITED' = 'EDITED',
-  'DELETED' = 'DELETED',
-}
-
 export type ChangeListType = {
   operationComment?: string
   operationType?: string
