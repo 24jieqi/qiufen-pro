@@ -88,6 +88,7 @@ export enum FetchDirectiveArg {
 export type NewFieldNodeType = FieldNode & {
   fieldKey: string
   checked: boolean
+  halfChecked: boolean
   nameValue: string
   description: string
   type: string
