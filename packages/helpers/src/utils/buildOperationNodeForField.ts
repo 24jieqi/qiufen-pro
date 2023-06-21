@@ -407,7 +407,7 @@ function resolveSelectionSet({
     // 得到自身的所有字段
     const fields = type.getFields()
     // 将继承的字段覆盖自身的字段，这样是
-    const tmpFields = { ...fields, ..._interfacesFields }
+    const tmpFields = { ..._interfacesFields, ...fields }
 
     return {
       kind: Kind.SELECTION_SET,
