@@ -1,6 +1,6 @@
 {
   "name": "@fruits-chain/qiufen-pro-graphql-mock",
-  "version": "0.0.4beta",
+  "version": "0.0.5beta",
   "description": "Mocking graphql schema capabilities",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

@@ -16,8 +16,8 @@ export async function executeQiufenMockingServer() {
   /** Delete require cache */
   delete require.cache[qiufenConfigFilePath]
   const qiufenConfigs: GraphqlKitConfig = require(qiufenConfigFilePath)
-  const url = await startMockingServer(qiufenConfigs)
-  return url
+  const res = await startMockingServer(qiufenConfigs)
+  return res
 }
 
 export async function startMockingServer(qiufenConfigs: GraphqlKitConfig) {
@@ -53,5 +53,5 @@ export async function startMockingServer(qiufenConfigs: GraphqlKitConfig) {
   // eslint-disable-next-line no-console
   console.log(`🚀 Mocking server listening at: ${url}`)
 
-  return url
+  return { url, server }
 }
