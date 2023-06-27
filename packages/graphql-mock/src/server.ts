@@ -52,6 +52,7 @@ export async function startMockingServer(qiufenConfigs: GraphqlKitConfig) {
       mocks: mock?.scalarMap,
       preserveResolvers: true,
     }),
+    introspection: true,
   })
 
   return {
