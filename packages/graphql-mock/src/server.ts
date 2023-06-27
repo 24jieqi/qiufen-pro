@@ -25,7 +25,10 @@ export async function executeQiufenMockingServer() {
   return { url, server }
 }
 
-export async function startMockingServer(qiufenConfigs: GraphqlKitConfig) {
+export async function startMockingServer(
+  qiufenConfigs: GraphqlKitConfig,
+  localSchemaFilePath = '',
+) {
   const {
     endpoint,
     port,
@@ -38,9 +41,11 @@ export async function startMockingServer(qiufenConfigs: GraphqlKitConfig) {
   if (schemaPolicy === 'remote') {
     typeDefsSDL = await fetchTypeDefs(endpoint?.url)
   } else {
-    typeDefsSDL = fs
-      .readFileSync(path.join(process.cwd(), localSchemaFile))
-      ?.toString()
+    const schemaFilePath = localSchemaFilePath
+      ? localSchemaFilePath
+      : path.join(process.cwd(), localSchemaFile)
+
+    typeDefsSDL = fs.readFileSync(schemaFilePath)?.toString()
   }
 
   const server = new ApolloServer({
