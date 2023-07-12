@@ -6,7 +6,10 @@ function isBrowser(): boolean {
   return typeof window !== 'undefined'
 }
 
-export async function fetchSchema(url: string): Promise<GraphQLSchema> {
+export async function fetchSchema(
+  url: string,
+  timeout = 15000,
+): Promise<GraphQLSchema> {
   let response
   if (isBrowser()) {
     let timer
@@ -21,7 +24,7 @@ export async function fetchSchema(url: string): Promise<GraphQLSchema> {
         }),
       }),
       new Promise(function (_, reject) {
-        timer = setTimeout(() => reject(new Error('request timeout')), 15000)
+        timer = setTimeout(() => reject(new Error('request timeout')), timeout)
       }),
     ])
     clearTimeout(timer)
@@ -40,7 +43,7 @@ export async function fetchSchema(url: string): Promise<GraphQLSchema> {
         }),
       }),
       new Promise(function (_, reject) {
-        timer = setTimeout(() => reject(new Error('request timeout')), 15000)
+        timer = setTimeout(() => reject(new Error('request timeout')), timeout)
       }),
     ])
     clearTimeout(timer)

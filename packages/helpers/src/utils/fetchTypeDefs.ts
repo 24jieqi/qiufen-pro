@@ -4,7 +4,7 @@ function isBrowser(): boolean {
   return typeof window !== 'undefined'
 }
 
-export async function fetchTypeDefs(url: string) {
+export async function fetchTypeDefs(url: string, timeout = 15000) {
   let response
   if (isBrowser()) {
     let timer
@@ -19,7 +19,7 @@ export async function fetchTypeDefs(url: string) {
         }),
       }),
       new Promise(function (_, reject) {
-        timer = setTimeout(() => reject(new Error('request timeout')), 15000)
+        timer = setTimeout(() => reject(new Error('request timeout')), timeout)
       }),
     ])
     clearTimeout(timer)
@@ -38,7 +38,7 @@ export async function fetchTypeDefs(url: string) {
         }),
       }),
       new Promise(function (_, reject) {
-        timer = setTimeout(() => reject(new Error('request timeout')), 15000)
+        timer = setTimeout(() => reject(new Error('request timeout')), timeout)
       }),
     ])
     clearTimeout(timer)
