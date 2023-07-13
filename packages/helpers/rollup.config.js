@@ -23,8 +23,8 @@ export default [
       },
     ],
     external: [
-      // ...Object.keys(pkg.dependencies || {}),
-      // ...Object.keys(pkg.peerDependencies || {}),
+      ...Object.keys(pkg.dependencies || {}),
+      ...Object.keys(pkg.peerDependencies || {}),
     ],
     plugins: [
       /** 配置插件 - 每次打包清除目标文件 */
