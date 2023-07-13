@@ -26,9 +26,9 @@ export async function fetchTypeDefs(url: string, timeout = 15000) {
   } else {
     let timer
     // @ts-ignore
-    const nodeFetch = require('node-fetch')
+    const nodeFetch = await import('node-fetch')
     response = await Promise.race([
-      nodeFetch(url, {
+      nodeFetch.default(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

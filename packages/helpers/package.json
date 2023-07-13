@@ -1,6 +1,6 @@
 {
   "name": "@fruits-chain/qiufen-pro-helpers",
-  "version": "0.1.1beta",
+  "version": "0.1.2beta",
   "description": "Collection of helper functions for qiufen-pro",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
@@ -27,14 +27,14 @@
   "license": "MIT",
   "devDependencies": {
     "@types/lodash": "^4.14.195",
-    "graphql": "^16.6.0"
+    "graphql": "^16.6.0",
+    "node-fetch": "2"
   },
   "peerDependencies": {
     "graphql": "^16.6.0"
   },
   "dependencies": {
-    "lodash": "^4.17.21",
-    "node-fetch": "2"
+    "lodash": "^4.17.21"
   },
   "publishConfig": {
     "access": "public",

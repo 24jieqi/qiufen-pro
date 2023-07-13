@@ -15,10 +15,12 @@ export default [
     output: [
       {
         file: pkg.main,
+        inlineDynamicImports: true,
         format: 'cjs',
       },
       {
         file: pkg.module,
+        inlineDynamicImports: true,
         format: 'es',
       },
     ],
