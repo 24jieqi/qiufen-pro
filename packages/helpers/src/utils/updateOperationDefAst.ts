@@ -64,17 +64,15 @@ function hasConflictingVariableDefinitions(
   return filteredNames.some(name => remoteName === name)
 }
 
+type DefNodeType =
+  | DefinitionNode
+  | FieldNode
+  | InlineFragmentNode
+  | OperationDefinitionNode
+
 export function updateOperationDefAst(
-  leftDefNode:
-    | DefinitionNode
-    | FieldNode
-    | InlineFragmentNode
-    | OperationDefinitionNode,
-  rightDefNode:
-    | DefinitionNode
-    | FieldNode
-    | InlineFragmentNode
-    | OperationDefinitionNode,
+  leftDefNode: DefNodeType,
+  rightDefNode: DefNodeType,
   remoteConflictingVariablesNames: ConflictingVariablesNames[] = [],
 ): DefinitionNode | OperationDefinitionNode | null {
   const localNode = leftDefNode as unknown as
@@ -83,6 +81,9 @@ export function updateOperationDefAst(
   const remoteNode = rightDefNode as unknown as
     | FieldNode
     | ExecutableDefinitionNode
+
+  console.log(localNode, ' --localNode')
+  console.log(remoteNode, ' --remoteNode')
 
   let filteredNotUpdateField: FieldNode[] = []
 
@@ -204,6 +205,7 @@ export function updateOperationDefAst(
     localNode.alias = localNode.alias || remoteNode.alias
   }
 
+  // 情况1 字段更新
   if (!localNode.selectionSet && remoteNode.selectionSet) {
     /* 这里修复添加新字段，records这种对象体更新bug
   old: query adhocNamePage($input: adhocPageInput) {
@@ -229,6 +231,13 @@ export function updateOperationDefAst(
     localNode.selectionSet = remoteNode.selectionSet
   }
 
+  // 情况2 字段更新
+  if (!!localNode.selectionSet && !remoteNode.selectionSet) {
+    // @ts-ignore
+    localNode.selectionSet = undefined
+  }
+
+  // 情况3 字段更新
   if (localNode?.selectionSet && remoteNode?.selectionSet) {
     localNode.selectionSet.selections = localNode.selectionSet.selections
       .map(localSelection => {
