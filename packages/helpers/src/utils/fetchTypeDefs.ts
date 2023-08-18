@@ -26,7 +26,7 @@ export async function fetchTypeDefs(url: string, timeout = 15000) {
   } else {
     let timer
     // @ts-ignore
-    const nodeFetch = await import('node-fetch')
+    const nodeFetch = await import('cross-fetch')
     response = await Promise.race([
       nodeFetch.default(url, {
         method: 'POST',
