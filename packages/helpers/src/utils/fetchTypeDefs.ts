@@ -4,7 +4,11 @@ function isBrowser(): boolean {
   return typeof window !== 'undefined'
 }
 
-export async function fetchTypeDefs(url: string, timeout = 15000) {
+export async function fetchTypeDefs(
+  url: string,
+  timeout = 15000,
+  authorization = '',
+) {
   let response
   if (isBrowser()) {
     let timer
@@ -13,6 +17,7 @@ export async function fetchTypeDefs(url: string, timeout = 15000) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          authorization,
         },
         body: JSON.stringify({
           query: getIntrospectionQuery().toString(),
@@ -32,6 +37,7 @@ export async function fetchTypeDefs(url: string, timeout = 15000) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          authorization,
         },
         body: JSON.stringify({
           query: getIntrospectionQuery().toString(),

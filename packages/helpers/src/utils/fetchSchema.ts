@@ -9,6 +9,7 @@ function isBrowser(): boolean {
 export async function fetchSchema(
   url: string,
   timeout = 15000,
+  authorization = '',
 ): Promise<GraphQLSchema> {
   let response
   if (isBrowser()) {
@@ -18,6 +19,7 @@ export async function fetchSchema(
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          authorization,
         },
         body: JSON.stringify({
           query: getIntrospectionQuery().toString(),
@@ -37,6 +39,7 @@ export async function fetchSchema(
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          authorization,
         },
         body: JSON.stringify({
           query: getIntrospectionQuery().toString(),
