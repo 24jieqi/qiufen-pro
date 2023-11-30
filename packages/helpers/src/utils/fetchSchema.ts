@@ -11,16 +11,19 @@ export async function fetchSchema(
   timeout = 15000,
   authorization = '',
 ): Promise<GraphQLSchema> {
+  const headers = {
+    'Content-Type': 'application/json',
+    // 只有在存在 authorization 时才添加 Authorization 头部
+    ...(authorization && { authorization }),
+  }
+
   let response
   if (isBrowser()) {
     let timer
     response = await Promise.race([
       fetch(url, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          authorization,
-        },
+        headers,
         body: JSON.stringify({
           query: getIntrospectionQuery().toString(),
         }),
@@ -37,10 +40,7 @@ export async function fetchSchema(
     response = await Promise.race([
       nodeFetch.default(url, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          authorization,
-        },
+        headers,
         body: JSON.stringify({
           query: getIntrospectionQuery().toString(),
         }),
