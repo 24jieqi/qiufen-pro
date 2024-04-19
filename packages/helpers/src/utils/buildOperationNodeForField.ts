@@ -733,7 +733,7 @@ function _normalizeGraphqlInputType(
   const typeName = type.toString()
   const ofTypeName = namedType.name
   // handle ref cycle
-  const refCount = refChain.filter(item => item === ofTypeName).length
+  const refCount = refChain.length
 
   if (isScalarType(namedType)) {
     return {
@@ -761,7 +761,7 @@ function _normalizeGraphqlInputType(
     name: typeName,
     ofName: ofTypeName,
     fields:
-      refCount > 3
+      refCount > 4
         ? []
         : Object.values(namedType.getFields()).map(item => {
             return {
